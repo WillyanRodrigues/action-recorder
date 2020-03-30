@@ -27,9 +27,11 @@ public class LineConverter implements EntityDTOConverter<LineDTO , Line ,  LineD
 	@Override
 	public LineDTOResponse toResponseDTO(Line object) {
 		LineDTOResponse lineDTOResponse = new LineDTOResponse();
+		lineDTOResponse.setId(object.getLineId());
 		lineDTOResponse.setAreaCode(object.getAreaCode());
 		lineDTOResponse.setCountryCode(object.getCountryCode());
 		lineDTOResponse.setNumber(object.getNumber());
+		lineDTOResponse.setPlanType(object.getPlan().getType().name());
 		return lineDTOResponse;
 	}
 

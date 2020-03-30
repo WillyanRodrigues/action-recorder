@@ -29,7 +29,7 @@ public class ActionConverter implements EntityDTOConverter<ActionDTO , Action , 
 	@Override
 	public ActionDTOResponse toResponseDTO(Action object) {
 		ActionDTOResponse actionDTOResponse =  new ActionDTOResponse();
-		actionDTOResponse.setId(object.getId());
+		actionDTOResponse.setId(object.getActionId());
 		actionDTOResponse.setServiceType(object.getServiceType().name());
 		actionDTOResponse.setUsedData(object.getConsumedData());
 		return actionDTOResponse;

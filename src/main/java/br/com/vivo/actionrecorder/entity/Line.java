@@ -1,36 +1,43 @@
 package br.com.vivo.actionrecorder.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Line {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long lineId;
 	
-	@Column
+	@Column(nullable = false)
 	private int countryCode;
 	
-	@Column
+	@Column(nullable = false)
 	private int areaCode;
 	
-	@Column
+	@Column(unique = true , nullable = false)
 	private Long number;
 
 	@ManyToOne
 	private Plan plan;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
-    private User user;
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name= "lineId")
+	private List<Action> actions;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
+	private User user;
 
 	public int getCountryCode() {
 		return countryCode;
@@ -72,8 +79,18 @@ public class Line {
 	}
 
 
-	public Long getId() {
-		return id;
+	public Long getLineId() {
+		return lineId;
+	}
+
+
+	public List<Action> getActions() {
+		return actions;
+	}
+
+
+	public void setActions(List<Action> actions) {
+		this.actions = actions;
 	}
 
 

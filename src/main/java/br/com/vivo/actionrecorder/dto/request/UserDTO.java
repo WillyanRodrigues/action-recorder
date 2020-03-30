@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 public class UserDTO {
 
 	@NotNull
-	private String documentNumber;
+	private Long documentNumber;
 	
 	@NotNull
 	private String firstName;
@@ -13,11 +13,11 @@ public class UserDTO {
 	@NotNull
 	private String lastName;
 
-	public String getDocumentNumber() {
+	public Long getDocumentNumber() {
 		return documentNumber;
 	}
 
-	public void setDocumentNumber(String documentNumber) {
+	public void setDocumentNumber(Long documentNumber) {
 		this.documentNumber = documentNumber;
 	}
 

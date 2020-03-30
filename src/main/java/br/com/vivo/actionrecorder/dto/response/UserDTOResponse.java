@@ -1,22 +1,20 @@
 package br.com.vivo.actionrecorder.dto.response;
 
-import java.util.List;
-
 public class UserDTOResponse {
 	
-	private String documentNumber;
+	private Long id;
+	
+	private Long documentNumber;
 	
 	private String firstName;
 	
 	private String lastName;
-	
-	private List<LineDTOResponse> lines;
 
-	public String getDocumentNumber() {
+	public Long getDocumentNumber() {
 		return documentNumber;
 	}
 
-	public void setDocumentNumber(String documentNumber) {
+	public void setDocumentNumber(Long documentNumber) {
 		this.documentNumber = documentNumber;
 	}
 
@@ -36,13 +34,14 @@ public class UserDTOResponse {
 		this.lastName = lastName;
 	}
 
-	public List<LineDTOResponse> getLines() {
-		return lines;
+	public Long getId() {
+		return id;
 	}
 
-	public void setLines(List<LineDTOResponse> lines) {
-		this.lines = lines;
+	public void setId(Long id) {
+		this.id = id;
 	}
+	
 	
 
 }

@@ -30,6 +30,7 @@ public class UserConverter implements EntityDTOConverter<UserDTO, User , UserDTO
 	@Override
 	public UserDTOResponse toResponseDTO(User object) {
 		UserDTOResponse userDTOResponse = new UserDTOResponse();
+		userDTOResponse.setId(object.getUserId());
 		userDTOResponse.setDocumentNumber(object.getDocumentNumber());
 		userDTOResponse.setFirstName(object.getFirstName());
 		userDTOResponse.setLastName(object.getLastName());

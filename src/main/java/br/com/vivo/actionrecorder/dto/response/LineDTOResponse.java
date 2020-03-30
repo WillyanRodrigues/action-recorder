@@ -1,7 +1,5 @@
 package br.com.vivo.actionrecorder.dto.response;
 
-import java.util.List;
-
 public class LineDTOResponse {
 
 	private Long id;
@@ -13,8 +11,6 @@ public class LineDTOResponse {
 	private Long number;
 
 	private String planType;
-	
-	private List<ActionDTOResponse> actions;
 
 	public Long getId() {
 		return id;
@@ -54,14 +50,6 @@ public class LineDTOResponse {
 
 	public void setPlanType(String planType) {
 		this.planType = planType;
-	}
-
-	public List<ActionDTOResponse> getActions() {
-		return actions;
-	}
-
-	public void setActions(List<ActionDTOResponse> actions) {
-		this.actions = actions;
 	}
 	
 	
