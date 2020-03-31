@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,8 +67,8 @@ public class ActionRecorderRestController {
 	@ResponseStatus(code = HttpStatus.OK,  value =  HttpStatus.OK)
 	public List<ActionDTOResponse> getAllActionsFromLineBetweenDate(@PathVariable(name = "documentNumber") Long documentNumber,
 			@PathVariable(name = "lineNumber") Long lineNumber,
-			@RequestParam(name ="startDate") LocalDateTime startDate,
-			@RequestParam(name ="endDate") LocalDateTime endDate) {
+			@RequestParam(name ="startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME , pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime startDate,
+			@RequestParam(name ="endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME , pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime endDate) {
 		return actionRecordingservice.findByDateFilter(documentNumber, lineNumber, startDate, endDate);
 	}
 	
