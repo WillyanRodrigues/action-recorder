@@ -39,6 +39,14 @@ public class LineService {
 		return new CreateDTOResponse(repository.save(line).getLineId());
 	}
 	
+	public LineDTOResponse findByLineNumber(Long documentNumber, Long lineNumber) {
+		Optional<Line> line =  repository.findByNumberAndUser(lineNumber, userService.findUserByDocumentNumber(documentNumber));
+		if(!line.isPresent()) {
+			throw new ResourceException(HttpStatus.NOT_FOUND,"Line not found");
+		}
+		return converter.toResponseDTO(line.get());
+	}
+	
 	public LineDTOResponse find(Long userId, Long lineId) {
 		Optional<Line> line =  repository.findByLineIdAndUser(lineId, userService.findUser(userId));
 		if(!line.isPresent()) {
@@ -76,5 +84,13 @@ public class LineService {
 		return line.get();
 	}
 	
+	
+	public Line findByLineNumberAndDocumentNumber(Long documentNumber, Long number) {
+		Optional<Line> line =  repository.findByNumberAndUser(number, userService.findUserByDocumentNumber(documentNumber));
+		if(!line.isPresent()) {
+			throw new ResourceException(HttpStatus.NOT_FOUND,"No line found for this user");
+		}
+		return line.get();
+	}
 	
 }

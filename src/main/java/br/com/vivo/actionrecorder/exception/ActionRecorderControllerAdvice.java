@@ -21,7 +21,7 @@ public class ActionRecorderControllerAdvice {
    errorResponse.setStatus(ex.getStatus().value());
    errorResponse.setMessage(ex.getMessage());
    errorResponse.setTimestamp(LocalDateTime.now());
-   
+   ex.printStackTrace();
    return ResponseEntity.status(ex.getStatus()).body(errorResponse);
    
   }
@@ -59,7 +59,7 @@ public class ActionRecorderControllerAdvice {
    errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
    errorResponse.setMessage(ex.getMessage());
    errorResponse.setTimestamp(LocalDateTime.now());
-   
+   ex.printStackTrace();
    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
    
   }

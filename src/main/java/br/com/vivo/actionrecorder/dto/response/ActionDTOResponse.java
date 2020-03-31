@@ -1,17 +1,21 @@
 package br.com.vivo.actionrecorder.dto.response;
 
+import java.time.LocalDateTime;
+
 public class ActionDTOResponse {
 	
 	private Long id;
 
-	private String usedData;
+	private Double usedData;
 	
 	private String serviceType;
 	
-	public String getUsedData() {
+	private LocalDateTime date;
+	
+	public Double getUsedData() {
 		return usedData;
 	}
-	public void setUsedData(String usedData) {
+	public void setUsedData(Double usedData) {
 		this.usedData = usedData;
 	}
 	public String getServiceType() {
@@ -26,6 +30,13 @@ public class ActionDTOResponse {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public LocalDateTime getDate() {
+		return date;
+	}
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+	
 	
 	
 }

@@ -1,11 +1,14 @@
 package br.com.vivo.actionrecorder.converter;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Component;
 
 import br.com.vivo.actionrecorder.dto.request.ActionDTO;
 import br.com.vivo.actionrecorder.dto.response.ActionDTOResponse;
 import br.com.vivo.actionrecorder.entity.Action;
 import br.com.vivo.actionrecorder.entity.ServiceType;
+import br.com.vivo.actionrecorder.util.DateUtil;
 
 @Component
 public class ActionConverter implements EntityDTOConverter<ActionDTO , Action , ActionDTOResponse> {
@@ -23,6 +26,7 @@ public class ActionConverter implements EntityDTOConverter<ActionDTO , Action , 
 		Action action =  new Action();
 		action.setConsumedData(object.getUsedData());
 		action.setServiceType(ServiceType.valueOf(object.getServiceType()));
+		action.setDate(DateUtil.fromLocalDateTimeToDate(LocalDateTime.now()));
 		return action;
 	}
 
@@ -32,6 +36,7 @@ public class ActionConverter implements EntityDTOConverter<ActionDTO , Action , 
 		actionDTOResponse.setId(object.getActionId());
 		actionDTOResponse.setServiceType(object.getServiceType().name());
 		actionDTOResponse.setUsedData(object.getConsumedData());
+		actionDTOResponse.setDate(DateUtil.fromDateToLocalDateTime(object.getDate()));
 		return actionDTOResponse;
 	}
 

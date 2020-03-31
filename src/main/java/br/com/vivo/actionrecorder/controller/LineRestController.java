@@ -34,23 +34,30 @@ public class LineRestController {
 		return lineService.create(line , userId);
 	}
 	
-	@GetMapping("user/{userId}/line?lineId=lineId")
+	@GetMapping("user/{userId}/line/{lineId}")
 	@ResponseStatus(code = HttpStatus.OK, value = HttpStatus.OK)
 	public LineDTOResponse getLine(@PathVariable(name = "userId", required = true)Long userId,
-									@RequestParam(name = "lineId", required = true)Long lineId) {
+									@PathVariable(name = "lineId", required = true)Long lineId) {
 		return lineService.find(userId , lineId);
 	}
 	
-	@GetMapping("user/{userId}/line")
+	@GetMapping("user/{documentNumber}/line")
+	@ResponseStatus(code = HttpStatus.OK, value = HttpStatus.OK)
+	public LineDTOResponse getLineByLineNumber(@PathVariable(name = "documentNumber", required = true)Long documentNumber,
+									@RequestParam(name = "number", required = true)Long number) {
+		return lineService.findByLineNumber(documentNumber , number);
+	}
+	
+	@GetMapping("user/{userId}/lines")
 	@ResponseStatus(code = HttpStatus.OK, value = HttpStatus.OK)
 	public List<LineDTOResponse> getAllLinesFromUser(@PathVariable(name = "userId", required = true)Long userId) {
 		return lineService.find(userId);
 	}
 	
-	@DeleteMapping("user/{userId}/line?lineId=lineId")
+	@DeleteMapping("user/{userId}/line/{lineId}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT, value = HttpStatus.NO_CONTENT)
 	public void deleteLine(@PathVariable(name = "userId", required = true) Long userId,
-							@RequestParam(name = "lineId", required = true) Long lineId) {
+							@PathVariable(name = "lineId", required = true) Long lineId) {
 		lineService.delete(userId, lineId);
 	}
 }

@@ -14,5 +14,9 @@ public interface LineRepository extends CrudRepository<Line , Long>{
 
 	Optional<List<Line>> findByUser(User user);
 	
-	Optional<Line> findByLineIdAndUser(Long Id, User user);
+	Optional<Line> findByNumber(Long number);
+	
+	Optional<Line> findByLineIdAndUser(Long lineId, User user);
+	
+	Optional<Line> findByNumberAndUser(Long number , User user);
 }

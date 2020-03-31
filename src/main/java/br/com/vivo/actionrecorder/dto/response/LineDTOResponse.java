@@ -1,5 +1,7 @@
 package br.com.vivo.actionrecorder.dto.response;
 
+import br.com.vivo.actionrecorder.dto.request.PlanDTO;
+
 public class LineDTOResponse {
 
 	private Long id;
@@ -10,7 +12,7 @@ public class LineDTOResponse {
 	
 	private Long number;
 
-	private String planType;
+	private PlanDTO planDTO;
 
 	public Long getId() {
 		return id;
@@ -44,13 +46,15 @@ public class LineDTOResponse {
 		this.number = number;
 	}
 
-	public String getPlanType() {
-		return planType;
+	public PlanDTO getPlanDTO() {
+		return planDTO;
 	}
 
-	public void setPlanType(String planType) {
-		this.planType = planType;
+	public void setPlanDTO(PlanDTO planDTO) {
+		this.planDTO = planDTO;
 	}
+
+
 	
 	
 }

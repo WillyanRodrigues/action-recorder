@@ -2,14 +2,14 @@ package br.com.vivo.actionrecorder.dto.request;
 
 public class ActionDTO {
 	
-	private String usedData;
+	private Double usedData;
 	
 	private String serviceType;
 	
-	public String getUsedData() {
+	public Double getUsedData() {
 		return usedData;
 	}
-	public void setUsedData(String usedData) {
+	public void setUsedData(Double usedData) {
 		this.usedData = usedData;
 	}
 	public String getServiceType() {

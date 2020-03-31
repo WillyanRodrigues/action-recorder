@@ -22,10 +22,10 @@ public class User {
 	@Column(unique = true, nullable = false ,  length = 11)
 	private Long documentNumber;
 	
-	@Column
+	@Column(nullable = false)
 	private String firstName;
 	
-	@Column
+	@Column(nullable = false)
 	private String lastName;
 	
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true , cascade = CascadeType.ALL)

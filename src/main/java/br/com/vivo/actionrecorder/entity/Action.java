@@ -1,5 +1,7 @@
 package br.com.vivo.actionrecorder.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Action {
@@ -17,22 +21,27 @@ public class Action {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long actionId;
 	
-	@Column
-	private String consumedData;
+	@Column(nullable = false)
+	private Double consumedData;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private ServiceType serviceType;
 	
 	@ManyToOne
-	@JoinColumn(name = "lineId")
+	@JoinColumn(name = "lineId", nullable = false)
 	private Line line;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
+    private Date date;
 
 
-	public String getConsumedData() {
+	public Double getConsumedData() {
 		return consumedData;
 	}
 
-	public void setConsumedData(String consumedData) {
+	public void setConsumedData(Double consumedData) {
 		this.consumedData = consumedData;
 	}
 
@@ -54,6 +63,14 @@ public class Action {
 
 	public void setLine(Line line) {
 		this.line = line;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	

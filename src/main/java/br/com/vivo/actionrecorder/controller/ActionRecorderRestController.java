@@ -1,5 +1,6 @@
 package br.com.vivo.actionrecorder.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -46,11 +47,11 @@ public class ActionRecorderRestController {
 		return actionRecordingservice.create(userId , lineId ,action);
 	}
 	
-	@GetMapping("user/{userId}/line/{lineId}/action?actionId=actionId")
+	@GetMapping("user/{userId}/line/{lineId}/action/{actionId}")
 	@ResponseStatus(code = HttpStatus.OK,  value =  HttpStatus.OK)
 	public ActionDTOResponse getAction(@PathVariable(name = "userId") Long userId,
 			@PathVariable(name = "lineId") Long lineId,
-			@RequestParam(name = "actionId") Long actionId) {
+			@PathVariable(name = "actionId") Long actionId) {
 		return actionRecordingservice.find(userId, lineId , actionId);
 	}
 	
@@ -59,6 +60,22 @@ public class ActionRecorderRestController {
 	public List<ActionDTOResponse> getAllActionsFromLine(@PathVariable(name = "userId") Long userId,
 			@PathVariable(name = "lineId") Long lineId) {
 		return actionRecordingservice.find(userId, lineId);
+	}
+	
+	@GetMapping(path ="user/{documentNumber}/line/{lineNumber}/action", params = {"startDate", "endDate"})
+	@ResponseStatus(code = HttpStatus.OK,  value =  HttpStatus.OK)
+	public List<ActionDTOResponse> getAllActionsFromLineBetweenDate(@PathVariable(name = "documentNumber") Long documentNumber,
+			@PathVariable(name = "lineNumber") Long lineNumber,
+			@RequestParam(name ="startDate") LocalDateTime startDate,
+			@RequestParam(name ="endDate") LocalDateTime endDate) {
+		return actionRecordingservice.findByDateFilter(documentNumber, lineNumber, startDate, endDate);
+	}
+	
+	@GetMapping(path ="user/document/{documentNumber}/line/{lineNumber}/actions")
+	@ResponseStatus(code = HttpStatus.OK,  value =  HttpStatus.OK)
+	public List<ActionDTOResponse> getAllActionsFromLineForCurrentMonth(@PathVariable(name = "documentNumber") Long documentNumber,
+			@PathVariable(name = "lineNumber") Long lineNumber) {
+		return actionRecordingservice.findActionsForCurrentMonth(documentNumber, lineNumber);
 	}
 	
 	@DeleteMapping("user/{userId}/line/{lineId}/action/{actionId}")

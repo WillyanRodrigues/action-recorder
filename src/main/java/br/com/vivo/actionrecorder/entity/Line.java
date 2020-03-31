@@ -28,7 +28,7 @@ public class Line {
 	@Column(unique = true , nullable = false)
 	private Long number;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Plan plan;
 	
 	@OneToMany(orphanRemoval = true)

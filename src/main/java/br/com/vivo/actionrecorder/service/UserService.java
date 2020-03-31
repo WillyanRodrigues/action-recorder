@@ -55,6 +55,14 @@ public class UserService {
 		return converter.toResponseDTO(user.get());
 	}
 	
+	public User findUserByDocumentNumber(Long documentNumber){
+		Optional<User> user = repository.findByDocumentNumber(documentNumber);
+		if(!user.isPresent()) {
+			throw new ResourceException(HttpStatus.NOT_FOUND, "User not found");
+		}
+		return user.get();
+	}
+	
 	public void delete(Long userId) {
 		repository.deleteById(userId);
 	}
